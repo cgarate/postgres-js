@@ -23,4 +23,8 @@ var pg = require('knex')({
 
 pg('famous_people').returning('*').insert({last_name: last_name, first_name: name, birthdate: birthdate}).then(function(res) {
   console.log(res);
+}).then( function() {
+  pg.destroy()
+}).catch(function(e) {
+  console.error(e);
 });
